@@ -1,0 +1,29 @@
+.autocomplete {
+  margin-top:3.7%;
+  padding: 0;
+  list-style: none;
+  position:absolute;
+  z-index: 1;
+  width: calc(100% - 93px);
+}
+
+.autocomplete li {
+  cursor: pointer;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+
+.autocomplete li:hover {
+  background-color: #f1f1f1;
+}
+
+.suggestion-container {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #444;
+}

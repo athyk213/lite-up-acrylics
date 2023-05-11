@@ -1,0 +1,9 @@
+.album-card {
+  margin: 5px;
+  transition: all 0.2s ease-in-out;
+  width: 225px;
+}
+
+.album-card:hover {
+  transform: scale(1.05);
+}
