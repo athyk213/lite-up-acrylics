@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/lite-up-acrylics/static/css/main.515a9e4b.css",
+    "main.js": "/lite-up-acrylics/static/js/main.3f0111fd.js",
+    "static/js/651.952a72d8.chunk.js": "/lite-up-acrylics/static/js/651.952a72d8.chunk.js",
+    "index.html": "/lite-up-acrylics/index.html",
+    "main.515a9e4b.css.map": "/lite-up-acrylics/static/css/main.515a9e4b.css.map",
+    "main.3f0111fd.js.map": "/lite-up-acrylics/static/js/main.3f0111fd.js.map",
+    "651.952a72d8.chunk.js.map": "/lite-up-acrylics/static/js/651.952a72d8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.515a9e4b.css",
+    "static/js/main.3f0111fd.js"
+  ]
+}
