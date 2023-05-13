@@ -85,7 +85,7 @@ export default function Cart({
 
   return (
     <div>
-      <Row className="row">
+      <Row>
         <Col className="col-md-8" style={{ width: "70%", marginLeft: "1.5%" }}>
           <Row className="row-cols-4">
             {albumsInCart.map((album, i) => {

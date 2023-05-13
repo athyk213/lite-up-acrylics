@@ -98,17 +98,14 @@ export default function Album({
           Back
         </Button>
       )}
-      <div style={{ display: "flex", alignItems: "center", margin: "30px" }}>
+      <div className="album-details-container">
         <img
           src={albumToDisplay.images[0].url}
           alt={albumToDisplay.name}
           className="album-image"
-          style={{ marginRight: "30px", width: "500px", height: "500px" }}
         />
         <div>
-          <h1 className="album-title" style={{ maxWidth: "80%" }}>
-            {albumToDisplay.name}
-          </h1>
+          <h1 className="album-title">{albumToDisplay.name}</h1>
           <div className="album-subtitle">
             <p>
               by{" "}

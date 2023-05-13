@@ -47,8 +47,11 @@ export default function Options({
   };
 
   return (
-    <InputGroup style={{ marginTop: "20px" }}>
-      <InputGroup.Text style={{ width: "200px", justifyContent: "center" }}>
+    <InputGroup className="dropdown" style={{ marginTop: "20px" }}>
+      <InputGroup.Text
+        className="dropdown-text"
+        style={{ justifyContent: "center" }}
+      >
         {item}
       </InputGroup.Text>
       <DropdownButton
@@ -74,7 +77,7 @@ export default function Options({
         />
       )}
       <Button className="btn-dark" onClick={handleClick} disabled={isInCart}>
-        {isInCart ? "Already in Cart" : "Add to Cart"}
+        {isInCart ? "In Cart" : "Add to Cart"}
       </Button>
     </InputGroup>
   );
