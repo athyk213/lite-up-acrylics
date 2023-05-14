@@ -3,11 +3,22 @@ import { FaCartArrowDown } from "react-icons/fa";
 import logo from "../logo_transparent.png";
 import { Link } from "react-router-dom";
 
-export default function Navbar({ cartCount, setSearchInput, setAlbums }) {
+export default function Navbar({
+  cartCount,
+  setSearchInput,
+  setAlbums,
+  signedIn,
+  setSignedIn,
+}) {
   const handleNavClick = () => {
     setSearchInput("");
     setAlbums([]);
   };
+
+  const handleSignOut = () => {
+    alert("Sign Out");
+  };
+
   return (
     <header className="navbar">
       <div className="navbar__logo-container">
@@ -22,9 +33,15 @@ export default function Navbar({ cartCount, setSearchInput, setAlbums }) {
       </div>
       <nav className="navbar__nav">
         <ul className="navbar__menu">
-          <Link to="/community" onClick={handleNavClick}>
-            <li className="navbar__menu-item">Community</li>
-          </Link>
+          {!signedIn ? (
+            <Link to="/" onClick={handleNavClick}>
+              <li className="navbar__menu-item">Sign In</li>
+            </Link>
+          ) : (
+            <Link to="/" onClick={handleSignOut}>
+              <li className="navbar__menu-item">Sign Out</li>
+            </Link>
+          )}
           <p>|</p>
           <Link to="/info" onClick={handleNavClick}>
             <li className="navbar__menu-item">Info</li>

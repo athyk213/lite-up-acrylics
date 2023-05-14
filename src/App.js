@@ -13,6 +13,7 @@ export default function App() {
   const [quantities, setQuantities] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [albums, setAlbums] = useState([]);
+  const [signedIn, setSignedIn] = useState(false);
 
   return (
     <>
@@ -20,6 +21,8 @@ export default function App() {
         cartCount={cartCount}
         setSearchInput={setSearchInput}
         setAlbums={setAlbums}
+        signedIn={signedIn}
+        setSignedIn={setSignedIn}
       />
       <Routes>
         <Route
@@ -30,6 +33,7 @@ export default function App() {
               searchInput={searchInput}
               setSearchInput={setSearchInput}
               setAlbums={setAlbums}
+              signedIn={signedIn}
             />
           }
         />
@@ -46,6 +50,7 @@ export default function App() {
               setCartCount={setCartCount}
               setSearchInput={setSearchInput}
               setAlbums={setAlbums}
+              signedIn={signedIn}
             />
           }
         />

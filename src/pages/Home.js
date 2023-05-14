@@ -20,6 +20,7 @@ export default function Home({
   searchInput,
   setSearchInput,
   setAlbums,
+  signedIn,
 }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -77,7 +78,6 @@ export default function Home({
       .then((result) => result.json())
       .then((data) => setAccessToken(data.access_token));
   }, []);
-
   async function search(query = searchInput) {
     // Get artist ID
     var searchParameters = {
@@ -147,6 +147,14 @@ export default function Home({
             />
           )}
         </InputGroup>
+        {uniqueAlbums.length === 0 && !signedIn && (
+          <h1 style={{ textAlign: "center", margin: "20px" }}>
+            <Link to="/" style={{ color: "blue" }}>
+              SIGN IN
+            </Link>{" "}
+            to save your albums in cart!
+          </h1>
+        )}
       </Container>
       <Container>
         <Row className="mx-2 mt-3 row row-cols-4 justify-content-center">

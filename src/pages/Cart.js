@@ -20,6 +20,7 @@ export default function Cart({
   setCartCount,
   setSearchInput,
   setAlbums,
+  signedIn,
 }) {
   const navigate = useNavigate();
   const [checkout, setCheckout] = useState(false);
