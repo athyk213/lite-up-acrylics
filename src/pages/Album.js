@@ -79,7 +79,7 @@ export default function Album({
       fetchAlbum();
     }
   }, [location.pathname, albumToDisplay, accessToken, noAlbum]);
-  console.log(albumToDisplay);
+
   if (!albumToDisplay) {
     return <div>Loading...</div>;
   }

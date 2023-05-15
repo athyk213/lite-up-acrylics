@@ -39,48 +39,52 @@ export default function Options({
     e.preventDefault();
 
     const quantity = selectedValue === "custom" ? customAmount : selectedValue;
-    const { id, name, images, artists, release_date } = albumToDisplay;
+    if (!isNaN(quantity) && quantity <= 9 && quantity > 0) {
+      const { id, name, images, artists, release_date } = albumToDisplay;
 
-    addToCart({
-      album: {
-        id,
-        name,
-        images: images[0].url,
-        artists: artists.map((artist) => ({
-          id: artist.id,
-          name: artist.name,
-        })),
-        release_date,
-      },
-      price: Number(item.split(": $")[1]),
-      option: item.split(": $")[0],
-    });
-    addToQuantities(quantity);
-    navigate(`/cart`);
-    if (signedIn) {
-      const user = await Auth.currentAuthenticatedUser();
-      const userId = user.attributes.sub;
-      const orderInput = {
-        userId: userId,
+      addToCart({
         album: {
-          id: id,
-          name: name,
+          id,
+          name,
           images: images[0].url,
           artists: artists.map((artist) => ({
             id: artist.id,
             name: artist.name,
           })),
-          release_date: release_date,
+          release_date,
         },
-        option: item.split(": $")[0],
         price: Number(item.split(": $")[1]),
-        quantity: quantity,
-      };
+        option: item.split(": $")[0],
+      });
+      addToQuantities(quantity);
+      navigate(`/cart`);
+      if (signedIn) {
+        const user = await Auth.currentAuthenticatedUser();
+        const userId = user.attributes.sub;
+        const orderInput = {
+          userId: userId,
+          album: {
+            id: id,
+            name: name,
+            images: images[0].url,
+            artists: artists.map((artist) => ({
+              id: artist.id,
+              name: artist.name,
+            })),
+            release_date: release_date,
+          },
+          option: item.split(": $")[0],
+          price: Number(item.split(": $")[1]),
+          quantity: quantity,
+        };
 
-      try {
-        await API.graphql(graphqlOperation(createOrder, { input: orderInput }));
-      } catch (error) {
-        console.log("An error occurred while creating the order: ", error);
+        try {
+          await API.graphql(
+            graphqlOperation(createOrder, { input: orderInput })
+          );
+        } catch (error) {
+          console.log("An error occurred while creating the order: ", error);
+        }
       }
     }
   };
