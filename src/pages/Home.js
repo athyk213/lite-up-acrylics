@@ -149,7 +149,7 @@ export default function Home({
         </InputGroup>
         {uniqueAlbums.length === 0 && !signedIn && (
           <h1 style={{ textAlign: "center", margin: "20px" }}>
-            <Link to="/" style={{ color: "blue" }}>
+            <Link to="/signin" style={{ color: "blue" }}>
               SIGN IN
             </Link>{" "}
             to save your albums in cart!

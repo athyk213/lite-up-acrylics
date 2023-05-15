@@ -5,7 +5,16 @@ import Cart from "./pages/Cart";
 import Album from "./pages/Album";
 import Navbar from "./components/Navbar";
 import Info from "./pages/Info";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import SignIn from "./auth/SignIn";
+import Validate from "./auth/Validate";
+import Register from "./auth/Register";
+
+import { API, Amplify, Auth } from "aws-amplify";
+import awsExports from "./aws-exports";
+import { listOrders } from "./graphql/queries";
+
+Amplify.configure(awsExports);
 
 export default function App() {
   const [cartCount, setCartCount] = useState(0);
@@ -14,6 +23,49 @@ export default function App() {
   const [searchInput, setSearchInput] = useState("");
   const [albums, setAlbums] = useState([]);
   const [signedIn, setSignedIn] = useState(false);
+  function updateAuthStatus(authStatus) {
+    setSignedIn(authStatus);
+  }
+  useEffect(() => {
+    async function setSignedInAlbums() {
+      try {
+        const user = await Auth.currentAuthenticatedUser();
+        const userId = user.attributes.sub;
+
+        const result = await API.graphql({
+          query: listOrders,
+          variables: {
+            filter: {
+              userId: { eq: userId },
+            },
+          },
+        });
+        setAlbumsInCart(
+          result.data.listOrders.items.map((item) => ({
+            album: {
+              id: item.album[0].id,
+              name: item.album[0].name,
+              images: item.album[0].images,
+              artists: item.album[0].artists,
+            },
+            option: item.option,
+            price: item.price,
+          }))
+        );
+
+        setQuantities(
+          result.data.listOrders.items.map((item) => item.quantity)
+        );
+        setCartCount(result.data.listOrders.items.length);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (signedIn) {
+      setSignedInAlbums();
+    }
+  }, [signedIn]);
 
   return (
     <>
@@ -22,7 +74,10 @@ export default function App() {
         setSearchInput={setSearchInput}
         setAlbums={setAlbums}
         signedIn={signedIn}
-        setSignedIn={setSignedIn}
+        updateAuthStatus={updateAuthStatus}
+        setAlbumsInCart={setAlbumsInCart}
+        setQuantities={setQuantities}
+        setCartCount={setCartCount}
       />
       <Routes>
         <Route
@@ -64,9 +119,16 @@ export default function App() {
               setQuantities={setQuantities}
               albumsInCart={albumsInCart}
               quantities={quantities}
+              signedIn={signedIn}
             />
           }
         />
+        <Route
+          path="/signin"
+          element={<SignIn updateAuthStatus={updateAuthStatus} />}
+        />
+        <Route path="/register" element={<Register />} />
+        <Route path="/validate" element={<Validate />} />
       </Routes>
     </>
   );

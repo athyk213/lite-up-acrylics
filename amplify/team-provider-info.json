@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-liteup-dev-200242-authRole",
+      "UnauthRoleArn": "arn:aws:iam::141532496799:role/amplify-liteup-dev-200242-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::141532496799:role/amplify-liteup-dev-200242-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-liteup-dev-200242-deployment",
+      "UnauthRoleName": "amplify-liteup-dev-200242-unauthRole",
+      "StackName": "amplify-liteup-dev-200242",
+      "StackId": "arn:aws:cloudformation:us-east-1:141532496799:stack/amplify-liteup-dev-200242/32f69e30-f2bc-11ed-8601-0ef4dbbc0f71",
+      "AmplifyAppId": "d1jyzgsh6tw7fi"
+    },
+    "categories": {
+      "auth": {
+        "liteup65704033": {}
+      },
+      "api": {
+        "liteup": {}
+      },
+      "storage": {
+        "dynamoAlbums": {}
+      }
+    }
+  }
+}

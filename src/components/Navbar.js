@@ -1,22 +1,37 @@
 import "./Navbar.css";
 import { FaCartArrowDown } from "react-icons/fa";
 import logo from "../logo_transparent.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Auth } from "aws-amplify";
 
 export default function Navbar({
   cartCount,
   setSearchInput,
   setAlbums,
   signedIn,
-  setSignedIn,
+  updateAuthStatus,
+  setAlbumsInCart,
+  setCartCount,
+  setQuantities,
 }) {
+  const navigate = useNavigate();
   const handleNavClick = () => {
     setSearchInput("");
     setAlbums([]);
   };
 
-  const handleSignOut = () => {
-    alert("Sign Out");
+  const handleSignOut = async () => {
+    try {
+      console.log("Sign Out");
+      await Auth.signOut();
+      updateAuthStatus(false);
+      setAlbumsInCart([]);
+      setCartCount(0);
+      setQuantities([]);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -34,7 +49,7 @@ export default function Navbar({
       <nav className="navbar__nav">
         <ul className="navbar__menu">
           {!signedIn ? (
-            <Link to="/" onClick={handleNavClick}>
+            <Link to="/signin" onClick={handleNavClick}>
               <li className="navbar__menu-item">Sign In</li>
             </Link>
           ) : (

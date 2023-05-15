@@ -16,6 +16,7 @@ export default function Album({
   setQuantities,
   albumsInCart,
   quantities,
+  signedIn,
 }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -33,7 +34,7 @@ export default function Album({
       },
     });
   };
-  const addToCart = (item) => {
+  const addToCart = async (item) => {
     setCartCount(cartCount + 1);
     setAlbumsInCart([...albumsInCart, item]);
   };
@@ -123,6 +124,7 @@ export default function Album({
             albumToDisplay={albumToDisplay}
             item={"Wall Mount: $20"}
             albumsInCart={albumsInCart}
+            signedIn={signedIn}
           ></Options>
           <Options
             addToQuantities={addToQuantities}
@@ -130,6 +132,7 @@ export default function Album({
             albumToDisplay={albumToDisplay}
             item={"LED Stand: $30"}
             albumsInCart={albumsInCart}
+            signedIn={signedIn}
           ></Options>
           <Options
             addToQuantities={addToQuantities}
@@ -137,6 +140,7 @@ export default function Album({
             albumToDisplay={albumToDisplay}
             item={"Only Acrylic Piece: $10"}
             albumsInCart={albumsInCart}
+            signedIn={signedIn}
           ></Options>
         </div>
       </div>

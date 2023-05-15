@@ -7,6 +7,8 @@ import {
   Button,
 } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import { API, graphqlOperation, Auth } from "aws-amplify";
+import { createOrder } from "../graphql/mutations";
 
 export default function Options({
   addToQuantities,
@@ -14,10 +16,22 @@ export default function Options({
   albumToDisplay,
   item,
   albumsInCart,
+  signedIn,
 }) {
   const navigate = useNavigate();
   const [selectedValue, setSelectedValue] = useState("1");
   const [customAmount, setCustomAmount] = useState("");
+
+  let userId = "";
+
+  Auth.currentAuthenticatedUser()
+    .then((user) => {
+      userId = user.attributes.sub;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
   const isInCart = albumsInCart.some(
     (album) =>
       album.album.id === albumToDisplay.id &&
@@ -32,18 +46,47 @@ export default function Options({
     setCustomAmount(e.target.value);
   };
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
 
     const quantity = selectedValue === "custom" ? customAmount : selectedValue;
+    const { id, name, images, artists } = albumToDisplay;
 
     addToCart({
-      album: albumToDisplay,
+      album: {
+        id,
+        name,
+        images: images[0].url,
+        artists,
+      },
       price: Number(item.split(": $")[1]),
       option: item.split(": $")[0],
     });
     addToQuantities(quantity);
     navigate(`/cart`);
+    if (signedIn) {
+      const orderInput = {
+        userId: userId,
+        album: {
+          id: albumToDisplay.id,
+          name: albumToDisplay.name,
+          images: albumToDisplay.images[0].url,
+          artists: albumToDisplay.artists.map((artist) => ({
+            id: artist.id,
+            name: artist.name,
+          })),
+        },
+        option: item.split(": $")[0],
+        price: Number(item.split(": $")[1]),
+        quantity: quantity,
+      };
+
+      try {
+        await API.graphql(graphqlOperation(createOrder, { input: orderInput }));
+      } catch (error) {
+        console.log("An error occurred while creating the order: ", error);
+      }
+    }
   };
 
   return (

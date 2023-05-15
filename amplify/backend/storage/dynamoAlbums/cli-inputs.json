@@ -1,0 +1,14 @@
+{
+  "resourceName": "dynamoAlbums",
+  "tableName": "dynamoAlbums",
+  "partitionKey": {
+    "fieldName": "userId",
+    "fieldType": "string"
+  },
+  "sortKey": {
+    "fieldName": "createdAt",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

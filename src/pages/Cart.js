@@ -10,6 +10,9 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import PayPal from "../components/PayPal";
 import { useState } from "react";
+import { deleteOrder, updateOrder } from "../graphql/mutations";
+import { listOrders } from "../graphql/queries";
+import { API, graphqlOperation } from "aws-amplify";
 
 export default function Cart({
   cartCount,
@@ -29,6 +32,7 @@ export default function Cart({
     setAlbums([]);
   };
   const [purchased, setPurchased] = useState(false);
+
   if ((!albumsInCart || !quantities || !albumsInCart.length) && !purchased) {
     return (
       <h1 style={{ textAlign: "center" }}>
@@ -44,7 +48,16 @@ export default function Cart({
       <h1 style={{ textAlign: "center" }}>Thank You For Your Purchase!</h1>
     );
   }
-  const handleQuantityChange = (index, quantity) => {
+
+  const getOrderById = async (name, option) => {
+    const orders = await API.graphql(graphqlOperation(listOrders));
+    const matchingOrder = orders.data.listOrders.items.find((order) => {
+      return order.album[0].name === name && order.option === option;
+    });
+    return matchingOrder ? matchingOrder.id : null;
+  };
+
+  const handleQuantityChange = async (index, quantity) => {
     setCheckout(false);
     if (!isNaN(quantity) && quantity <= 9 && quantity > 0) {
       const updatedQuantities = [...quantities];
@@ -55,13 +68,50 @@ export default function Cart({
 
       setQuantities(updatedQuantities);
       setAlbumsInCart(updatedAlbums);
+      if (signedIn) {
+        const matchingOrderId = await getOrderById(
+          albumsInCart[index].album.name,
+          albumsInCart[index].option
+        );
+
+        try {
+          await API.graphql(
+            graphqlOperation(updateOrder, {
+              input: {
+                id: matchingOrderId,
+                quantity: quantity,
+                price: albumsInCart[index].price * quantity,
+              },
+            })
+          );
+        } catch (error) {
+          console.log("An error occurred while updating the order: ", error);
+        }
+      }
     } else {
       setQuantities([...quantities]);
       setAlbumsInCart([...albumsInCart]);
     }
   };
 
-  const handleDelete = (index) => {
+  const handleDelete = async (index) => {
+    if (signedIn) {
+      const orderIdToDelete = await getOrderById(
+        albumsInCart[index].album.name,
+        albumsInCart[index].option
+      );
+      try {
+        await API.graphql(
+          graphqlOperation(deleteOrder, {
+            input: {
+              id: orderIdToDelete,
+            },
+          })
+        );
+      } catch (error) {
+        console.log("An error occurred while deleting the order: ", error);
+      }
+    }
     setCheckout(false);
     const updatedQuantities = [...quantities];
     updatedQuantities.splice(index, 1);
@@ -91,7 +141,7 @@ export default function Cart({
           <Row className="row-cols-4">
             {albumsInCart.map((album, i) => {
               return (
-                <Card key={i} className="mb-2">
+                <Card key={album.album.id} className="mb-2">
                   <Link
                     onClick={(e) => {
                       e.preventDefault();
@@ -105,7 +155,7 @@ export default function Cart({
                   >
                     <Card.Img
                       variant="top"
-                      src={album.album.images[0].url}
+                      src={album.album.images}
                       className="mt-2 rounded"
                     />
                     <Card.Body
