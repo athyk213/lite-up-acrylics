@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/lite-up-acrylics/static/css/main.515a9e4b.css",
-    "main.js": "/lite-up-acrylics/static/js/main.b88795f1.js",
-    "static/js/651.952a72d8.chunk.js": "/lite-up-acrylics/static/js/651.952a72d8.chunk.js",
+    "main.css": "/lite-up-acrylics/static/css/main.2cd5a28e.css",
+    "main.js": "/lite-up-acrylics/static/js/main.9f5e68f0.js",
+    "static/js/651.d180135d.chunk.js": "/lite-up-acrylics/static/js/651.d180135d.chunk.js",
     "index.html": "/lite-up-acrylics/index.html",
-    "main.515a9e4b.css.map": "/lite-up-acrylics/static/css/main.515a9e4b.css.map",
-    "main.b88795f1.js.map": "/lite-up-acrylics/static/js/main.b88795f1.js.map",
-    "651.952a72d8.chunk.js.map": "/lite-up-acrylics/static/js/651.952a72d8.chunk.js.map"
+    "main.2cd5a28e.css.map": "/lite-up-acrylics/static/css/main.2cd5a28e.css.map",
+    "main.9f5e68f0.js.map": "/lite-up-acrylics/static/js/main.9f5e68f0.js.map",
+    "651.d180135d.chunk.js.map": "/lite-up-acrylics/static/js/651.d180135d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.515a9e4b.css",
-    "static/js/main.b88795f1.js"
+    "static/css/main.2cd5a28e.css",
+    "static/js/main.9f5e68f0.js"
   ]
 }
