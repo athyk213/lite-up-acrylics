@@ -21,17 +21,6 @@ export default function Options({
   const navigate = useNavigate();
   const [selectedValue, setSelectedValue] = useState("1");
   const [customAmount, setCustomAmount] = useState("");
-
-  let userId = "";
-
-  Auth.currentAuthenticatedUser()
-    .then((user) => {
-      userId = user.attributes.sub;
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-
   const isInCart = albumsInCart.some(
     (album) =>
       album.album.id === albumToDisplay.id &&
@@ -50,14 +39,18 @@ export default function Options({
     e.preventDefault();
 
     const quantity = selectedValue === "custom" ? customAmount : selectedValue;
-    const { id, name, images, artists } = albumToDisplay;
+    const { id, name, images, artists, release_date } = albumToDisplay;
 
     addToCart({
       album: {
         id,
         name,
         images: images[0].url,
-        artists,
+        artists: artists.map((artist) => ({
+          id: artist.id,
+          name: artist.name,
+        })),
+        release_date,
       },
       price: Number(item.split(": $")[1]),
       option: item.split(": $")[0],
@@ -65,16 +58,19 @@ export default function Options({
     addToQuantities(quantity);
     navigate(`/cart`);
     if (signedIn) {
+      const user = await Auth.currentAuthenticatedUser();
+      const userId = user.attributes.sub;
       const orderInput = {
         userId: userId,
         album: {
-          id: albumToDisplay.id,
-          name: albumToDisplay.name,
-          images: albumToDisplay.images[0].url,
-          artists: albumToDisplay.artists.map((artist) => ({
+          id: id,
+          name: name,
+          images: images[0].url,
+          artists: artists.map((artist) => ({
             id: artist.id,
             name: artist.name,
           })),
+          release_date: release_date,
         },
         option: item.split(": $")[0],
         price: Number(item.split(": $")[1]),

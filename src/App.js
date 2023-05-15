@@ -23,6 +23,7 @@ export default function App() {
   const [searchInput, setSearchInput] = useState("");
   const [albums, setAlbums] = useState([]);
   const [signedIn, setSignedIn] = useState(false);
+  const [username, setUsername] = useState("");
   function updateAuthStatus(authStatus) {
     setSignedIn(authStatus);
   }
@@ -31,6 +32,7 @@ export default function App() {
       try {
         const user = await Auth.currentAuthenticatedUser();
         const userId = user.attributes.sub;
+        setUsername(user.username);
 
         const result = await API.graphql({
           query: listOrders,
@@ -47,6 +49,7 @@ export default function App() {
               name: item.album[0].name,
               images: item.album[0].images,
               artists: item.album[0].artists,
+              release_date: item.album[0].release_date,
             },
             option: item.option,
             price: item.price,
@@ -78,6 +81,8 @@ export default function App() {
         setAlbumsInCart={setAlbumsInCart}
         setQuantities={setQuantities}
         setCartCount={setCartCount}
+        username={username}
+        setUsername={setUsername}
       />
       <Routes>
         <Route

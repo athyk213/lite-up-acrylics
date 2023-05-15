@@ -79,7 +79,7 @@ export default function Album({
       fetchAlbum();
     }
   }, [location.pathname, albumToDisplay, accessToken, noAlbum]);
-
+  console.log(albumToDisplay);
   if (!albumToDisplay) {
     return <div>Loading...</div>;
   }
@@ -101,7 +101,7 @@ export default function Album({
       )}
       <div className="album-details-container">
         <img
-          src={albumToDisplay.images[0].url}
+          src={albumToDisplay.images[0]?.url || albumToDisplay.images}
           alt={albumToDisplay.name}
           className="album-image"
         />

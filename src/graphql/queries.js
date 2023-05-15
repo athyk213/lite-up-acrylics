@@ -13,6 +13,7 @@ export const getOrder = /* GraphQL */ `
           id
           name
         }
+        release_date
       }
       option
       price
@@ -40,6 +41,7 @@ export const listOrders = /* GraphQL */ `
             id
             name
           }
+          release_date
         }
         option
         price

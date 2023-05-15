@@ -16,6 +16,7 @@ export const createOrder = /* GraphQL */ `
           id
           name
         }
+        release_date
       }
       option
       price
@@ -41,6 +42,7 @@ export const updateOrder = /* GraphQL */ `
           id
           name
         }
+        release_date
       }
       option
       price
@@ -66,6 +68,7 @@ export const deleteOrder = /* GraphQL */ `
           id
           name
         }
+        release_date
       }
       option
       price

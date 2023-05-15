@@ -8,6 +8,7 @@ type Album {
   name: String!
   images: [String!]!
   artists: [Artist!]!
+  release_date: String!
 }
 
 type Artist {

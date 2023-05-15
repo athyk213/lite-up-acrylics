@@ -13,6 +13,8 @@ export default function Navbar({
   setAlbumsInCart,
   setCartCount,
   setQuantities,
+  username,
+  setUsername,
 }) {
   const navigate = useNavigate();
   const handleNavClick = () => {
@@ -28,6 +30,7 @@ export default function Navbar({
       setAlbumsInCart([]);
       setCartCount(0);
       setQuantities([]);
+      setUsername("");
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -53,9 +56,13 @@ export default function Navbar({
               <li className="navbar__menu-item">Sign In</li>
             </Link>
           ) : (
-            <Link to="/" onClick={handleSignOut}>
-              <li className="navbar__menu-item">Sign Out</li>
-            </Link>
+            <>
+              <li className="navbar__menu-item">{username}</li>
+              <p>|</p>
+              <Link to="/" onClick={handleSignOut}>
+                <li className="navbar__menu-item">Sign Out</li>
+              </Link>
+            </>
           )}
           <p>|</p>
           <Link to="/info" onClick={handleNavClick}>
