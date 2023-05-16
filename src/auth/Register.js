@@ -14,10 +14,6 @@ export default function Register() {
 
   const handleRegister = async () => {
     try {
-      console.log(username);
-      console.log(password);
-      console.log(email);
-
       await Auth.signUp({
         username: username,
         password: password,
@@ -25,10 +21,9 @@ export default function Register() {
           email: email,
         },
       });
-
       navigate("/validate");
     } catch (err) {
-      console.log(err);
+      alert(err);
     }
   };
 

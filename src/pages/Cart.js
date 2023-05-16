@@ -143,6 +143,7 @@ export default function Cart({
               return (
                 <Card key={album.album.id} className="mb-2">
                   <Link
+                    to={`/album/${album.album.id}`}
                     onClick={(e) => {
                       e.preventDefault();
                       navigate(`/album/${album.album.id}`, {

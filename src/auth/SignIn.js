@@ -11,16 +11,14 @@ export default function SignIn({ updateAuthStatus }) {
   const [password, setPassword] = useState("");
   const handleLogin = async () => {
     try {
-      console.log("Login");
-      console.log(username);
-      console.log(password);
       await Auth.signIn(username, password);
       updateAuthStatus(true);
       navigate("/");
     } catch (err) {
-      console.log(err);
       if (err.code === "UserNotFoundException") {
         alert("User not found. Please check your username and try again.");
+      } else {
+        alert(err);
       }
     }
   };

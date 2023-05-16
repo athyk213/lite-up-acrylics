@@ -27,6 +27,7 @@ export default function App() {
   function updateAuthStatus(authStatus) {
     setSignedIn(authStatus);
   }
+
   useEffect(() => {
     async function setSignedInAlbums() {
       try {

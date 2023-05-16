@@ -162,6 +162,7 @@ export default function Home({
             return (
               <Card key={i} className="album-card">
                 <Link
+                  to={`/album/${album.id}`}
                   onClick={(e) => {
                     e.preventDefault();
                     navigate(`/album/${album.id}`, {
