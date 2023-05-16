@@ -1,4 +1,7 @@
 import React, { useEffect, useRef } from "react";
+import { deleteOrder } from "../graphql/mutations";
+import { API, Auth, graphqlOperation } from "aws-amplify";
+import { listOrders } from "../graphql/queries";
 
 export default function PayPal({
   value,
@@ -7,6 +10,28 @@ export default function PayPal({
   setCartCount,
   setPurchased,
 }) {
+  async function deleteOrdersForUser() {
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      const userId = user.attributes.sub;
+      const result = await API.graphql(
+        graphqlOperation(listOrders, {
+          filter: {
+            userId: { eq: userId },
+          },
+        })
+      );
+      const orderIds = result.data.listOrders.items.map((item) => item.id);
+      await Promise.all(
+        orderIds.map((orderId) =>
+          API.graphql(graphqlOperation(deleteOrder, { input: { id: orderId } }))
+        )
+      );
+    } catch (error) {
+      console.log("Error deleting orders:", error);
+    }
+  }
+
   const paypal = useRef();
   useEffect(() => {
     window.paypal
@@ -23,6 +48,9 @@ export default function PayPal({
                 },
               },
             ],
+            payee: {
+              email_address: "atharva.m.kalamkar@gmail.com",
+            },
           });
         },
         onApprove: async (data, actions) => {
@@ -30,6 +58,7 @@ export default function PayPal({
             setCartCount(0);
             setAlbumsInCart([]);
             setPurchased(true);
+            deleteOrdersForUser();
           } catch (err) {
             console.log(err);
           }
