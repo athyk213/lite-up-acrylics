@@ -62,7 +62,7 @@ export default function App() {
         );
         setCartCount(result.data.listOrders.items.length);
       } catch (error) {
-        console.log(error);
+        alert(error);
       }
     }
 
