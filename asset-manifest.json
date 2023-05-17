@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/lite-up-acrylics/static/css/main.2cd5a28e.css",
-    "main.js": "/lite-up-acrylics/static/js/main.720899d5.js",
+    "main.js": "/lite-up-acrylics/static/js/main.e715bf5d.js",
     "static/js/651.d180135d.chunk.js": "/lite-up-acrylics/static/js/651.d180135d.chunk.js",
     "index.html": "/lite-up-acrylics/index.html",
     "main.2cd5a28e.css.map": "/lite-up-acrylics/static/css/main.2cd5a28e.css.map",
-    "main.720899d5.js.map": "/lite-up-acrylics/static/js/main.720899d5.js.map",
+    "main.e715bf5d.js.map": "/lite-up-acrylics/static/js/main.e715bf5d.js.map",
     "651.d180135d.chunk.js.map": "/lite-up-acrylics/static/js/651.d180135d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2cd5a28e.css",
-    "static/js/main.720899d5.js"
+    "static/js/main.e715bf5d.js"
   ]
 }
