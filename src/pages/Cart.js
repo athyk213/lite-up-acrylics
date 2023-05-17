@@ -127,7 +127,7 @@ export default function Cart({
     (total, album, i) => total + album.price * quantities[i],
     0
   );
-  let onlineFees = Number((subtotal * 0.0349 + 0.49).toFixed(2));
+  let onlineFees = Number(((subtotal + 0.49) / 0.9651 - subtotal).toFixed(2));
 
   let description = albumsInCart
     .map(
