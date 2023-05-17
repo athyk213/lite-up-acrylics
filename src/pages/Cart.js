@@ -127,6 +127,7 @@ export default function Cart({
     (total, album, i) => total + album.price * quantities[i],
     0
   );
+  let onlineFees = Number((subtotal * 0.0349 + 0.49).toFixed(2));
 
   let description = albumsInCart
     .map(
@@ -280,11 +281,17 @@ export default function Cart({
             </tbody>
           </Table>
           <div className="text-right">
-            <h5 style={{ paddingBottom: "5%" }}>Subtotal: ${subtotal}</h5>
+            <h5 style={{ paddingBottom: "5%" }}>
+              Subtotal: ${(subtotal + onlineFees).toFixed(2)}
+              {"  "}
+              <span style={{ fontSize: "12px" }}>
+                (online payment fees: ${onlineFees})
+              </span>
+            </h5>
           </div>
           {checkout ? (
             <PayPal
-              value={subtotal}
+              value={subtotal + onlineFees}
               description={description}
               setAlbumsInCart={setAlbumsInCart}
               setCartCount={setCartCount}

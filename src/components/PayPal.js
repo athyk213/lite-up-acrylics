@@ -48,13 +48,11 @@ export default function PayPal({
                 },
               },
             ],
-            payee: {
-              email_address: "atharva.m.kalamkar@gmail.com",
-            },
           });
         },
         onApprove: async (data, actions) => {
           try {
+            await actions.order.capture();
             setCartCount(0);
             setAlbumsInCart([]);
             setPurchased(true);
