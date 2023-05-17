@@ -10,8 +10,7 @@ root.render(
   //<React.StrictMode>
   // basename="/lite-up-acrylics"
   <BrowserRouter>
-    {/* <App /> */}
-    <p>Hello World</p>
+    <App />
   </BrowserRouter>
   //</React.StrictMode>
 );
