@@ -83,7 +83,7 @@ export default function Options({
             graphqlOperation(createOrder, { input: orderInput })
           );
         } catch (error) {
-          console.log("An error occurred while creating the order: ", error);
+          alert("An error occurred while creating the order: ", error);
         }
       }
     }
