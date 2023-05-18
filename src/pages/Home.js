@@ -33,7 +33,7 @@ export default function Home({
   const handleSearchInput = (event) => {
     const input = event.target.value;
     setSearchInput(input);
-    if (input.length >= 1) {
+    if (input.trim().length >= 1) {
       setShowSuggestions(true);
     } else {
       setShowSuggestions(false);

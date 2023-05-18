@@ -142,7 +142,7 @@ export default function Cart({
           <Row className="row-cols-4">
             {albumsInCart.map((album, i) => {
               return (
-                <Card key={album.album.id} className="mb-2">
+                <Card key={i} className="mb-2">
                   <Link
                     to={`/album/${album.album.id}`}
                     onClick={(e) => {

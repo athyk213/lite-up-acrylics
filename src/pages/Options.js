@@ -46,7 +46,7 @@ export default function Options({
         album: {
           id,
           name,
-          images: images[0].url,
+          images: images[0]?.url || images,
           artists: artists.map((artist) => ({
             id: artist.id,
             name: artist.name,
@@ -66,7 +66,7 @@ export default function Options({
           album: {
             id: id,
             name: name,
-            images: images[0].url,
+            images: images[0]?.url || images,
             artists: artists.map((artist) => ({
               id: artist.id,
               name: artist.name,
