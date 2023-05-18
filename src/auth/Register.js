@@ -70,7 +70,7 @@ export default function Register() {
             </Button>
             &nbsp;&nbsp;
             <Link to="/login">
-              <Button variant="outline-primary">Login</Button>
+              <Button variant="outline-primary">Sign In</Button>
             </Link>
             &nbsp;&nbsp;
             <Link to="/">

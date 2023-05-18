@@ -7,20 +7,19 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
 export default function Validate() {
   const navigate = useNavigate();
-
   const [username, setUserName] = useState("");
   const [authenticationCode, setAuthenticationCode] = useState("");
 
   const handleRegisterConfirmation = async () => {
     try {
-      console.log("handleRegisterConfirmation");
-      console.log(username);
-      console.log(authenticationCode);
-
       await Auth.confirmSignUp(username, authenticationCode);
       navigate("/signin");
     } catch (err) {
-      console.log(err);
+      if (err.code === "NotAuthorizedException") {
+        alert("Your email has already been confirmed.");
+      } else {
+        alert(err);
+      }
     }
   };
 

@@ -17,6 +17,15 @@ export default function SignIn({ updateAuthStatus }) {
     } catch (err) {
       if (err.code === "UserNotFoundException") {
         alert("User not found. Please check your username and try again.");
+      } else if (err.code === "InvalidParameterException") {
+        alert("Please enter both your username and your password.");
+      } else if (err.code === "UserNotConfirmedException") {
+        try {
+          await Auth.resendSignUp(username);
+          navigate("/validate");
+        } catch (error) {
+          alert(error);
+        }
       } else {
         alert(err);
       }
@@ -26,7 +35,7 @@ export default function SignIn({ updateAuthStatus }) {
     <Container>
       <Row className="px-4 my-5">
         <Col>
-          <h1>Login</h1>
+          <h1>Sign In</h1>
         </Col>
       </Row>
       <Row className="px-4 my-5">
@@ -50,7 +59,7 @@ export default function SignIn({ updateAuthStatus }) {
               />
             </Form.Group>
             <Button variant="primary" type="button" onClick={handleLogin}>
-              Login &gt;&gt;
+              Sign In &gt;&gt;
             </Button>
             &nbsp;&nbsp;
             <Link to="/register">
