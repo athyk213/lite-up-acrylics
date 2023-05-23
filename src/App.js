@@ -24,11 +24,20 @@ export default function App() {
   const [albums, setAlbums] = useState([]);
   const [signedIn, setSignedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   function updateAuthStatus(authStatus) {
     setSignedIn(authStatus);
   }
+  const userPoolClientId = process.env.REACT_APP_USER_POOL_CLIENT_ID;
 
   useEffect(() => {
+    const user = localStorage.getItem(
+      `CognitoIdentityServiceProvider.${userPoolClientId}.LastAuthUser`
+    );
+    if (user) {
+      setSignedIn(true);
+    }
+
     async function setSignedInAlbums() {
       try {
         const user = await Auth.currentAuthenticatedUser();
@@ -69,7 +78,7 @@ export default function App() {
     if (signedIn) {
       setSignedInAlbums();
     }
-  }, [signedIn]);
+  }, [signedIn, userPoolClientId]);
 
   return (
     <>
@@ -131,7 +140,15 @@ export default function App() {
         />
         <Route
           path="/signin"
-          element={<SignIn updateAuthStatus={updateAuthStatus} />}
+          element={
+            <SignIn
+              updateAuthStatus={updateAuthStatus}
+              username={username}
+              password={password}
+              setUsername={setUsername}
+              setPassword={setPassword}
+            />
+          }
         />
         <Route path="/register" element={<Register />} />
         <Route path="/validate" element={<Validate />} />

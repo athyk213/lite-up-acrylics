@@ -1,14 +1,17 @@
-import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { Auth } from "aws-amplify";
 
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
-export default function SignIn({ updateAuthStatus }) {
+export default function SignIn({
+  updateAuthStatus,
+  username,
+  password,
+  setUsername,
+  setPassword,
+}) {
   const navigate = useNavigate();
-  const [username, setUserName] = useState("");
-  const [password, setPassword] = useState("");
   const handleLogin = async () => {
     try {
       await Auth.signIn(username, password);
@@ -46,7 +49,7 @@ export default function SignIn({ updateAuthStatus }) {
               <Form.Control
                 type="text"
                 placeholder="Enter User Name"
-                onChange={(evt) => setUserName(evt.target.value)}
+                onChange={(evt) => setUsername(evt.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPassword">

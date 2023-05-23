@@ -128,13 +128,6 @@ export default function Cart({
     0
   );
   let onlineFees = Number(((subtotal + 0.49) / 0.9651 - subtotal).toFixed(2));
-
-  let description = albumsInCart
-    .map(
-      (album, i) => `${album.option}: ${album.album.name} x ${quantities[i]}`
-    )
-    .join("\n");
-
   return (
     <div>
       <Row>
@@ -291,8 +284,9 @@ export default function Cart({
           </div>
           {checkout ? (
             <PayPal
-              value={subtotal + onlineFees}
-              description={description}
+              value={[subtotal, onlineFees]}
+              albumsInCart={albumsInCart}
+              quantities={quantities}
               setAlbumsInCart={setAlbumsInCart}
               setCartCount={setCartCount}
               setPurchased={setPurchased}

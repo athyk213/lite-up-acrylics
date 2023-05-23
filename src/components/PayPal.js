@@ -5,7 +5,8 @@ import { listOrders } from "../graphql/queries";
 
 export default function PayPal({
   value,
-  description,
+  albumsInCart,
+  quantities,
   setAlbumsInCart,
   setCartCount,
   setPurchased,
@@ -24,10 +25,28 @@ export default function PayPal({
               intent: "CAPTURE",
               purchase_units: [
                 {
-                  description: description,
+                  items: albumsInCart.map((album, i) => ({
+                    name: album.album.name,
+                    quantity: quantities[i],
+                    description: album.option,
+                    unit_amount: {
+                      currency_code: "USD",
+                      value: album.price,
+                    },
+                  })),
                   amount: {
                     currency_code: "USD",
-                    value: value,
+                    value: value[0] + value[1],
+                    breakdown: {
+                      item_total: {
+                        currency_code: "USD",
+                        value: value[0],
+                      },
+                      shipping: {
+                        currency_code: "USD",
+                        value: value[1],
+                      },
+                    },
                   },
                 },
               ],
@@ -81,12 +100,13 @@ export default function PayPal({
     };
   }, [
     value,
-    description,
+    albumsInCart,
+    quantities,
     setAlbumsInCart,
     setCartCount,
     setPurchased,
     paypalClientId,
   ]);
 
-  return <div ref={paypal}></div>;
+  return <div ref={paypal} />;
 }
