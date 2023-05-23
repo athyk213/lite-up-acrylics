@@ -26,9 +26,13 @@ export default function PayPal({
               purchase_units: [
                 {
                   items: albumsInCart.map((album, i) => ({
-                    name: album.album.name,
+                    name:
+                      album.album.name +
+                      ` by ${album.album.artists
+                        .slice(0, 3)
+                        .map((artist) => artist.name)
+                        .join(", ")} (${album.option})`,
                     quantity: quantities[i],
-                    description: album.option,
                     unit_amount: {
                       currency_code: "USD",
                       value: album.price,
