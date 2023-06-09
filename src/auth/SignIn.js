@@ -30,7 +30,7 @@ export default function SignIn({
           alert(error);
         }
       } else {
-        alert(err);
+        alert(err.message || err);
       }
     }
   };

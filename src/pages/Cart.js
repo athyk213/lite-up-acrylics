@@ -128,14 +128,15 @@ export default function Cart({
     0
   );
   let onlineFees = Number(((subtotal + 0.49) / 0.9651 - subtotal).toFixed(2));
+
   return (
     <div>
       <Row>
         <Col className="col-md-8" style={{ width: "70%", marginLeft: "1.5%" }}>
-          <Row className="row-cols-4">
+          <Row className="row-cols-xs-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-4">
             {albumsInCart.map((album, i) => {
               return (
-                <Card key={i} className="mb-2">
+                <Card key={i} className="mb-2 mx-auto">
                   <Link
                     to={`/album/${album.album.id}`}
                     onClick={(e) => {
@@ -251,7 +252,7 @@ export default function Cart({
           </Row>
         </Col>
         <Col style={{ width: "30%", marginRight: "0.9%" }}>
-          <Table striped bordered>
+          <Table striped bordered style={{ borderColor: "black" }}>
             <thead style={{ textAlign: "center" }}>
               <tr>
                 <th>Album</th>
@@ -278,7 +279,7 @@ export default function Cart({
               Subtotal: ${(subtotal + onlineFees).toFixed(2)}
               {"  "}
               <span style={{ fontSize: "12px" }}>
-                (online payment fees: ${onlineFees})
+                (online payment fees: ${onlineFees.toFixed(2)})
               </span>
             </h5>
           </div>

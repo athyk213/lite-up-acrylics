@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
 import Album from "./pages/Album";
@@ -81,7 +81,7 @@ export default function App() {
   }, [signedIn, userPoolClientId]);
 
   return (
-    <BrowserRouter>
+    <>
       <Navbar
         cartCount={cartCount}
         setSearchInput={setSearchInput}
@@ -107,7 +107,7 @@ export default function App() {
             />
           }
         />
-        <Route path="/info" element={<Info />} />
+        <Route exact path="/info" element={<Info />} />
         <Route
           path="/cart"
           element={
@@ -153,6 +153,6 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/validate" element={<Validate />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }

@@ -24,7 +24,6 @@ export default function Navbar({
 
   const handleSignOut = async () => {
     try {
-      console.log("Sign Out");
       await Auth.signOut();
       updateAuthStatus(false);
       setAlbumsInCart([]);
