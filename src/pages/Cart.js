@@ -133,10 +133,10 @@ export default function Cart({
     <div>
       <Row>
         <Col className="col-md-8" style={{ width: "70%", marginLeft: "1.5%" }}>
-          <Row className="row-cols-xs-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-4">
+          <Row className="row-cols-xs-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
             {albumsInCart.map((album, i) => {
               return (
-                <Card key={i} className="mb-2 mx-auto">
+                <Card key={i} className="mb-2">
                   <Link
                     to={`/album/${album.album.id}`}
                     onClick={(e) => {
