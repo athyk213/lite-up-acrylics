@@ -176,7 +176,15 @@ export default function Home({
                 >
                   <Card.Img className="mt-2" src={album.images[0].url} />
                   <Card.Body className="text-center">
-                    <Card.Title>
+                    <Card.Title
+                      style={{
+                        overflow: "hidden",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 4,
+                        WebkitBoxOrient: "vertical",
+                        maxWidth: "100%",
+                      }}
+                    >
                       <b>{album.name}</b>
                     </Card.Title>
                     <Card.Text>{album.release_date.split("-")[0]}</Card.Text>
