@@ -45,12 +45,24 @@ export default function Info() {
           />
         </div>
         <div className="text_container">
-          <h2>Wall Mount*</h2>
+          <h2>Wall Mount</h2>
           <p className="title">
             Example: IGOR by Tyler, The Creator | Blonde by Frank Ocean |
             Without Warning by Metro Boomin | At.Long.Last.A$AP by A$AP Rocky
           </p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>
+            Enhance your home decor with custom-made acrylic/Plexiglass wall
+            mounts of your favorite albums! Display your favorite music albums
+            with style and elegance. The sleek, transparent design adds a modern
+            touch to your living space. Included are damage-free hanging strips
+            by Command™, so you can securely mount your albums without worrying
+            about damaging your walls! <br />
+            <br /> Dimensions: <br />
+            Wall Mount: 5.7"W x 5.7"H x 0.375"T <br />
+            <br /> Included: <br />
+            Command™ Large Picture Hanging Strips x 2
+          </p>
+          <a href="/">Search for an artist's albums</a>
         </div>
       </div>
 
@@ -65,17 +77,30 @@ export default function Info() {
           alt="LED Stand"
           style={{ width: "35%", paddingTop: "20px" }}
         />
-        <div className="container">
-          <h2>LED Stand*</h2>
+        <div className="text_container">
+          <h2>LED Stand</h2>
           <p className="title">Example: AM by Arctic Monkeys</p>
-          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>
+            Bring your favorite albums to life with custom-made
+            acrylic/Plexiglass LED stands! This modern product combines the wall
+            mount design with vibrant LEDs, creating beautiful lighting effects
+            that illuminate the album art. With a transparent design adding
+            elegance to your space, these stands bring a touch of sophistication
+            to your interior design.
+            <br />
+            <br /> Dimensions: <br /> Acrylic Piece: 5"W x 5.6"H x 0.125"T
+            <br /> LED Base: 3.66"D x 3.66"W x 1.5"H <br />
+            <br /> Included: <br />
+            USB Power Cable <br />
+            Standard 24k Remote Control
+          </p>
         </div>
       </div>
       <div
         className="asterisk"
         style={{ textAlign: "center", paddingBottom: "20px" }}
       >
-        <p>*Black & White album covers typically come out better!</p>
+        <p>*Black & White album covers typically look better!</p>
       </div>
     </>
   );
