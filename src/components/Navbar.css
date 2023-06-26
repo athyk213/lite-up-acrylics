@@ -23,19 +23,18 @@
 .navbar__nav {
   display: flex;
   align-items: center;
-  margin-right: 1%;
   margin-top: 26px;
 }
 
 .navbar__menu {
   display: flex;
+  justify-content: center;
   list-style: none;
   font-weight: bold;
 }
 
 .navbar__menu-item {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 10px 0 10px;
   color: black;
 }
 
@@ -64,4 +63,15 @@
 
 .navbar__logo-text:hover {
   opacity: 0.8;
+}
+
+@media screen and (max-width: 950px) {
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .navbar__nav {
+    padding: 0px;
+  }
 }

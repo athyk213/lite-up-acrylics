@@ -43,13 +43,13 @@ export default function Navbar({
           <img src={logo} alt="Logo" className="navbar__logo" />
         </Link>
         <Link to="/" onClick={handleNavClick}>
-          <h4 className="navbar__logo-text">
+          <h4 className="navbar__logo-text" style={{ marginBottom: "0px" }}>
             Bringing your favorite albums to life.
           </h4>
         </Link>
       </div>
       <nav className="navbar__nav">
-        <ul className="navbar__menu">
+        <ul className="navbar__menu" style={{ paddingLeft: "0px" }}>
           {!signedIn ? (
             <Link to="/signin" onClick={handleNavClick}>
               <li className="navbar__menu-item">Sign In</li>

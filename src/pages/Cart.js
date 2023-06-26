@@ -251,7 +251,7 @@ export default function Cart({
             })}
           </Row>
         </Col>
-        <Col style={{ width: "30%", marginRight: "0.9%" }}>
+        <Col style={{ width: "30%", marginRight: "10px" }}>
           <Table striped bordered style={{ borderColor: "black" }}>
             <thead style={{ textAlign: "center" }}>
               <tr>
@@ -275,7 +275,7 @@ export default function Cart({
             </tbody>
           </Table>
           <div className="text-right">
-            <h5 style={{ paddingBottom: "5%" }}>
+            <h5 style={{ marginBottom: "10px" }}>
               Subtotal: ${(subtotal + onlineFees).toFixed(2)}
               {"  "}
               <span style={{ fontSize: "12px" }}>

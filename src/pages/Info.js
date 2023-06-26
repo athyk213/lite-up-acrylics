@@ -8,14 +8,7 @@ export default function Info() {
         <h5>Find out different customizable acrylic options!</h5>
       </div>
       <div className="about-cards">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            width: "80%",
-            paddingTop: "20px",
-          }}
-        >
+        <div className="mount-container">
           <div className="actual">
             <img
               src="https://i.scdn.co/image/ab67616d0000b2737005885df706891a3c182a57"
@@ -41,7 +34,7 @@ export default function Info() {
           <img
             src="https://i.imgur.com/pFGnA1l.jpg"
             alt="Wall Mount"
-            style={{ width: "50%", paddingLeft: "20px" }}
+            className="albums-photo"
           />
         </div>
         <div className="text_container">
