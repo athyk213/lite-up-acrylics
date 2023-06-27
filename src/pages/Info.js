@@ -60,19 +60,23 @@ export default function Info() {
       </div>
 
       <div className="about-cards">
-        <img
-          src="https://i.scdn.co/image/ab67616d0000b2734ae1c4c5c45aabe565499163"
-          alt="LED Stand"
-          style={{ width: "35%", paddingTop: "20px" }}
-        />
-        <img
-          src="https://i.scdn.co/image/ab67616d0000b2734ae1c4c5c45aabe565499163"
-          alt="LED Stand"
-          style={{ width: "35%", paddingTop: "20px" }}
-        />
+        <div className="led-container">
+          <img
+            src="https://i.scdn.co/image/ab67616d0000b273f864bcdcc245f06831d17ae0"
+            alt="LED Stand"
+            className="actual-led"
+          />
+          <video
+            src="https://i.imgur.com/ggmVCqG.mp4"
+            muted
+            controls
+            alt="LED Stand"
+            className="led-stand"
+          />
+        </div>
         <div className="text_container">
           <h2>LED Stand</h2>
-          <p className="title">Example: AM by Arctic Monkeys</p>
+          <p className="title">Example: Ghost Stories by Coldplay</p>
           <p>
             Bring your favorite albums to life with custom-made
             acrylic/Plexiglass LED stands! This modern product combines the wall
@@ -87,6 +91,7 @@ export default function Info() {
             USB Power Cable <br />
             Standard 24k Remote Control
           </p>
+          <a href="/">Search for an artist's albums</a>
         </div>
       </div>
       <div
