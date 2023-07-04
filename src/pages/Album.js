@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import "./Album.css";
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -142,6 +142,13 @@ export default function Album({
             albumsInCart={albumsInCart}
             signedIn={signedIn}
           ></Options>
+          <p>
+            * For more details on the products, check out the{" "}
+            <Link to="/info" style={{ color: "blue" }}>
+              INFO
+            </Link>{" "}
+            page! *
+          </p>
         </div>
       </div>
     </>

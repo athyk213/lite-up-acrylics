@@ -67,6 +67,13 @@ export default function PayPal({
               console.log(err);
             }
           },
+          onShippingChange(data, actions) {
+            if (data.shipping_address.country_code !== "US") {
+              return actions.reject();
+            }
+
+            return actions.resolve();
+          },
           onError: (err) => {
             console.log(err);
           },

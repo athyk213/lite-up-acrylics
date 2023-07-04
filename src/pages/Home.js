@@ -74,6 +74,7 @@ export default function Home({
         "&client_secret=" +
         CLIENT_SECRET,
     };
+    setPressedBackAlbums(null);
     fetch("https://accounts.spotify.com/api/token", authParameters)
       .then((result) => result.json())
       .then((data) => setAccessToken(data.access_token));

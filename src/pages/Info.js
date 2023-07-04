@@ -44,12 +44,13 @@ export default function Info() {
             Without Warning by Metro Boomin | At.Long.Last.A$AP by A$AP Rocky
           </p>
           <p>
-            Enhance your home decor with custom-made acrylic/Plexiglass wall
-            mounts of your favorite albums! Display your favorite music albums
-            with style and elegance. The sleek, transparent design adds a modern
-            touch to your living space. Included are damage-free hanging strips
-            by Command™, so you can securely mount your albums without worrying
-            about damaging your walls! <br />
+            Enhance your home decor with custom-made laser engraved
+            acrylic/Plexiglass wall mounts of your favorite albums! Display your
+            favorite music albums with style and elegance. The sleek,
+            transparent design adds a modern touch to your living space.
+            Included are damage-free hanging strips by Command™, so you can
+            securely mount your albums without worrying about damaging your
+            walls! <br />
             <br /> Dimensions: <br />
             Wall Mount: 5.7"W x 5.7"H x 0.375"T <br />
             <br /> Included: <br />
@@ -78,7 +79,7 @@ export default function Info() {
           <h2>LED Stand</h2>
           <p className="title">Example: Ghost Stories by Coldplay</p>
           <p>
-            Bring your favorite albums to life with custom-made
+            Bring your favorite albums to life with custom-made laser engraved
             acrylic/Plexiglass LED stands! This modern product combines the wall
             mount design with vibrant LEDs, creating beautiful lighting effects
             that illuminate the album art. With a transparent design adding

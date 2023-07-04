@@ -45,7 +45,14 @@ export default function Cart({
     );
   } else if (purchased) {
     return (
-      <h1 style={{ textAlign: "center" }}>Thank You For Your Purchase!</h1>
+      <h1 style={{ textAlign: "center" }}>
+        Thank you for your order! As the sole creator of the custom-made
+        acrylics, I am dedicated to crafting each item with utmost care and
+        attention to detail. Since I handle all aspects of the process,
+        including design and production, shipping could take up to 1 week. Once
+        again, thank you so much for supporting my small business, and I'm
+        excited to deliver your album acrylic piece to you soon!
+      </h1>
     );
   }
 
@@ -127,7 +134,9 @@ export default function Cart({
     (total, album, i) => total + album.price * quantities[i],
     0
   );
-  let onlineFees = Number(((subtotal + 0.49) / 0.9651 - subtotal).toFixed(2));
+  let onlineFees = Number(
+    ((subtotal + 4 + 0.49) / 0.9651 - subtotal).toFixed(2)
+  );
 
   return (
     <div>
@@ -279,7 +288,7 @@ export default function Cart({
               Subtotal: ${(subtotal + onlineFees).toFixed(2)}
               {"  "}
               <span style={{ fontSize: "12px" }}>
-                (online payment fees: ${onlineFees.toFixed(2)})
+                (shipping fees: ${onlineFees.toFixed(2)})
               </span>
             </h5>
           </div>
@@ -293,13 +302,15 @@ export default function Cart({
               setPurchased={setPurchased}
             />
           ) : (
-            <Button
-              onClick={() => {
-                setCheckout(true);
-              }}
-            >
-              Purchase Items
-            </Button>
+            <>
+              <Button
+                onClick={() => {
+                  setCheckout(true);
+                }}
+              >
+                Purchase Items
+              </Button>
+            </>
           )}
         </Col>
       </Row>
