@@ -137,7 +137,7 @@ export default function Cart({
         {albumsInCart.map((album, i) => {
           return (
             <Card key={i} className="mb-2">
-              <Card.Body className="d-flex align-items-start">
+              <Card.Body className="d-flex align-items-center">
                 <Link
                   to={`/album/${album.album.id}`}
                   onClick={(e) => {
