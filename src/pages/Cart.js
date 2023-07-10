@@ -5,7 +5,6 @@ import { useState } from "react";
 import { deleteOrder, updateOrder } from "../graphql/mutations";
 import { listOrders } from "../graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
-import "./Cart.css";
 
 export default function Cart({
   cartCount,
@@ -138,7 +137,7 @@ export default function Cart({
         {albumsInCart.map((album, i) => {
           return (
             <Card key={i} className="mb-2">
-              <Card.Body className="d-flex align-items-center">
+              <Card.Body className="d-flex align-items-start">
                 <Link
                   to={`/album/${album.album.id}`}
                   onClick={(e) => {
@@ -155,7 +154,7 @@ export default function Cart({
                     variant="top"
                     src={album.album.images}
                     className="rounded"
-                    style={{ width: "200px" }}
+                    style={{ width: "175px" }}
                   />
                 </Link>
                 <div style={{ marginLeft: "10px" }}>
@@ -177,11 +176,11 @@ export default function Cart({
                     variant="danger"
                     size="sm"
                     onClick={() => handleDelete(i)}
-                    style={{ marginTop: "69px" }}
+                    style={{ marginTop: "50px" }}
                   >
                     Delete Item
                   </Button>
-                  <Dropdown style={{ marginTop: "10px" }}>
+                  <Dropdown style={{ marginTop: "5px" }}>
                     <Dropdown.Toggle variant="primary" size="sm">
                       Change Quantity
                     </Dropdown.Toggle>
