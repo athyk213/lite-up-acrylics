@@ -1,18 +1,11 @@
-import {
-  Row,
-  Card,
-  ListGroup,
-  Button,
-  Dropdown,
-  Col,
-  Table,
-} from "react-bootstrap";
+import { Card, Button, Dropdown } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import PayPal from "../components/PayPal";
 import { useState } from "react";
 import { deleteOrder, updateOrder } from "../graphql/mutations";
 import { listOrders } from "../graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
+import "./Cart.css";
 
 export default function Cart({
   cartCount,
@@ -140,164 +133,117 @@ export default function Cart({
   );
 
   return (
-    <div>
-      <Row>
-        <Col className="col-md-8" style={{ width: "70%", marginLeft: "1.5%" }}>
-          <Row className="row-cols-xs-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
-            {albumsInCart.map((album, i) => {
-              return (
-                <Card key={i} className="mb-2">
-                  <Link
-                    to={`/album/${album.album.id}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate(`/album/${album.album.id}`, {
-                        state: {
-                          selectedAlbum: album.album,
-                        },
-                      });
-                    }}
-                    style={{ color: "black" }}
-                  >
-                    <Card.Img
-                      variant="top"
-                      src={album.album.images}
-                      className="mt-2 rounded"
-                    />
-                    <Card.Body
-                      className="text-center"
-                      style={{ height: "150px" }}
-                    >
-                      <Card.Title
-                        style={{
-                          overflow: "hidden",
-                          whiteSpace: "nowrap",
-                          textOverflow: "ellipsis",
-                          maxWidth: "100%",
-                        }}
-                      >
-                        {album.album.name}
-                      </Card.Title>
-                      <Card.Text>
-                        {album.album.artists
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ width: "97%", padding: "0px" }}>
+        {albumsInCart.map((album, i) => {
+          return (
+            <Card key={i} className="mb-2">
+              <Card.Body className="d-flex align-items-center">
+                <Link
+                  to={`/album/${album.album.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(`/album/${album.album.id}`, {
+                      state: {
+                        selectedAlbum: album.album,
+                      },
+                    });
+                  }}
+                  style={{ color: "black" }}
+                >
+                  <Card.Img
+                    variant="top"
+                    src={album.album.images}
+                    className="rounded"
+                    style={{ width: "200px" }}
+                  />
+                </Link>
+                <div style={{ marginLeft: "10px" }}>
+                  <h5 style={{ marginBottom: "0", marginTop: "5px" }}>
+                    <strong>{album.album.name}</strong>
+                    <span style={{ fontSize: "1rem", marginLeft: "5px" }}>
+                      {"by " +
+                        album.album.artists
                           .slice(0, 3)
                           .map((artist) => artist.name)
                           .join(", ")}
-                        {album.album.artists.length > 3 ? "and more" : ""}
-                      </Card.Text>
-                      <Card.Text>
-                        {album.option}: ${album.price * quantities[i]}
-                      </Card.Text>
-                    </Card.Body>
-                  </Link>
-
-                  <ListGroup className="list-group-flush text-center">
-                    <ListGroup.Item>Quantity: {quantities[i]}</ListGroup.Item>
-                  </ListGroup>
-                  <Card.Footer className="text-center">
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => handleDelete(i)}
-                    >
-                      Delete Item
-                    </Button>
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="primary"
-                        size="sm"
-                        style={{ marginTop: "10px" }}
-                      >
-                        Change Quantity
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        {[1, 2, 3, 4, 5].map((number) => (
-                          <Dropdown.Item
-                            key={number}
-                            onClick={() => handleQuantityChange(i, number)}
-                          >
-                            {number}
-                          </Dropdown.Item>
-                        ))}
-                        <Dropdown.Item>
-                          <div
-                            style={{ display: "flex", alignItems: "center" }}
-                          >
-                            <span style={{ marginRight: "5px" }}>Custom:</span>
-                            <input
-                              type="number"
-                              min="1"
-                              max="10"
-                              style={{ width: "50px" }}
-                              onClick={(e) => e.stopPropagation()}
-                              onChange={(e) =>
-                                handleQuantityChange(i, e.target.value)
-                              }
-                            />
-                          </div>
+                      {album.album.artists.length > 3 ? " and more" : ""}
+                    </span>
+                  </h5>
+                  <p style={{ marginBottom: "0" }}>
+                    {album.option}: ${album.price * quantities[i]}
+                  </p>
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={() => handleDelete(i)}
+                    style={{ marginTop: "69px" }}
+                  >
+                    Delete Item
+                  </Button>
+                  <Dropdown style={{ marginTop: "10px" }}>
+                    <Dropdown.Toggle variant="primary" size="sm">
+                      Change Quantity
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      {[1, 2, 3, 4, 5].map((number) => (
+                        <Dropdown.Item
+                          key={number}
+                          onClick={() => handleQuantityChange(i, number)}
+                        >
+                          {number}
                         </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </Card.Footer>
-                </Card>
-              );
-            })}
-          </Row>
-        </Col>
-        <Col style={{ width: "30%", marginRight: "10px" }}>
-          <Table striped bordered style={{ borderColor: "black" }}>
-            <thead style={{ textAlign: "center" }}>
-              <tr>
-                <th>Album</th>
-                <th>Quantity</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody>
-              {albumsInCart.map((album, i) => {
-                return (
-                  <tr>
-                    <td>
-                      <strong>{album.option}:</strong> {album.album.name}
-                    </td>
-                    <td>{quantities[i]}</td>
-                    <td>${album.price * quantities[i]}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </Table>
-          <div className="text-right">
-            <h5 style={{ marginBottom: "10px" }}>
-              Subtotal: ${(subtotal + onlineFees).toFixed(2)}
-              {"  "}
-              <span style={{ fontSize: "12px" }}>
-                (shipping fees: ${onlineFees.toFixed(2)})
-              </span>
-            </h5>
-          </div>
-          {checkout ? (
-            <PayPal
-              value={[subtotal, onlineFees]}
-              albumsInCart={albumsInCart}
-              quantities={quantities}
-              setAlbumsInCart={setAlbumsInCart}
-              setCartCount={setCartCount}
-              setPurchased={setPurchased}
-            />
-          ) : (
-            <>
-              <Button
-                onClick={() => {
-                  setCheckout(true);
-                }}
-              >
-                Purchase Items
-              </Button>
-            </>
-          )}
-        </Col>
-      </Row>
+                      ))}
+                      <Dropdown.Item>
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                          <span>Custom:</span>
+                          <input
+                            type="number"
+                            min="1"
+                            max="10"
+                            style={{ width: "50px" }}
+                            onClick={(e) => e.stopPropagation()}
+                            onChange={(e) =>
+                              handleQuantityChange(i, e.target.value)
+                            }
+                          />
+                        </div>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              </Card.Body>
+            </Card>
+          );
+        })}
+        <div className="text-right">
+          <h5>
+            Subtotal: ${(subtotal + onlineFees).toFixed(2)}{" "}
+            <span style={{ fontSize: "12px" }}>
+              (shipping fees: ${onlineFees.toFixed(2)})
+            </span>
+          </h5>
+        </div>
+        {checkout ? (
+          <PayPal
+            value={[subtotal, onlineFees]}
+            albumsInCart={albumsInCart}
+            quantities={quantities}
+            setAlbumsInCart={setAlbumsInCart}
+            setCartCount={setCartCount}
+            setPurchased={setPurchased}
+          />
+        ) : (
+          <Button
+            onClick={() => {
+              setCheckout(true);
+            }}
+            style={{ marginBottom: "20px" }}
+          >
+            Purchase Items
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

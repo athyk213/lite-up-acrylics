@@ -119,5 +119,5 @@ export default function PayPal({
     paypalClientId,
   ]);
 
-  return <div ref={paypal} />;
+  return <div ref={paypal} style={{ width: "300px" }} />;
 }
