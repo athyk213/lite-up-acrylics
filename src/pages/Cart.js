@@ -49,9 +49,10 @@ export default function Cart({
         Thank you for your order! As the sole creator of the custom-made
         acrylics, I am dedicated to crafting each item with utmost care and
         attention to detail. Since I handle all aspects of the process,
-        including design and production, shipping could take up to 1 week. Once
-        again, thank you so much for supporting my small business, and I'm
-        excited to deliver your album acrylic piece to you soon!
+        including design and production, shipping could take up to{" "}
+        <b>2 weeks</b>. Once again, thank you so much for supporting my small
+        business, and I'm excited to deliver your album acrylic piece to you
+        soon!
       </h1>
     );
   }
@@ -210,31 +211,14 @@ export default function Cart({
                         Change Quantity
                       </Dropdown.Toggle>
                       <Dropdown.Menu>
-                        <Dropdown.Item
-                          onClick={() => handleQuantityChange(i, 1)}
-                        >
-                          1
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => handleQuantityChange(i, 2)}
-                        >
-                          2
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => handleQuantityChange(i, 3)}
-                        >
-                          3
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => handleQuantityChange(i, 4)}
-                        >
-                          4
-                        </Dropdown.Item>
-                        <Dropdown.Item
-                          onClick={() => handleQuantityChange(i, 5)}
-                        >
-                          5
-                        </Dropdown.Item>
+                        {[1, 2, 3, 4, 5].map((number) => (
+                          <Dropdown.Item
+                            key={number}
+                            onClick={() => handleQuantityChange(i, number)}
+                          >
+                            {number}
+                          </Dropdown.Item>
+                        ))}
                         <Dropdown.Item>
                           <div
                             style={{ display: "flex", alignItems: "center" }}

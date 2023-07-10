@@ -5,6 +5,7 @@ import Cart from "./pages/Cart";
 import Album from "./pages/Album";
 import Navbar from "./components/Navbar";
 import Info from "./pages/Info";
+import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 import SignIn from "./auth/SignIn";
 import Validate from "./auth/Validate";
@@ -81,7 +82,9 @@ export default function App() {
   }, [signedIn, userPoolClientId]);
 
   return (
-    <>
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
       <Navbar
         cartCount={cartCount}
         setSearchInput={setSearchInput}
@@ -153,6 +156,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/validate" element={<Validate />} />
       </Routes>
-    </>
+      <Footer />
+    </div>
   );
 }

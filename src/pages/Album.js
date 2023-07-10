@@ -90,7 +90,7 @@ export default function Album({
         <Button
           className="btn-dark"
           onClick={goBack}
-          style={{ position: "relative", left: "30px" }}
+          style={{ width: "100px", marginLeft: "30px" }}
         >
           <FontAwesomeIcon
             icon={faArrowLeft}
