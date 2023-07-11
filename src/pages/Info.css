@@ -22,13 +22,6 @@ html {
   margin-right: 20px;
   gap: 5px;
 }
-
-.about-section {
-  padding: 20px;
-  text-align: center;
-  color: black;
-}
-
 .title {
   color: grey;
 }
@@ -64,6 +57,35 @@ html {
 
 .led-stand {
   width: 48.5%;
+}
+.custom-album-wall {
+  position: relative;
+  height: 75vh;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.album-wall-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: blur(3px);
+  filter: brightness(69%);
+  object-fit: cover;
+}
+
+.album-wall-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  z-index: 2;
+  font-size: 6vw;
+  text-shadow: 0 0 40px black;
+  margin: 0px;
 }
 
 @media screen and (max-width: 650px) {

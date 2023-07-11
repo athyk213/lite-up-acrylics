@@ -1,11 +1,27 @@
 import "./Info.css";
 
 export default function Info() {
+  window.addEventListener("scroll", function () {
+    var customAlbumWall = document.querySelector(".custom-album-wall");
+    var albumWallText = document.querySelector(".album-wall-text");
+    var scrollPosition = window.scrollY;
+
+    customAlbumWall.style.height = 75 - scrollPosition * 0.3 + "vh";
+    var opacityValue = 1 - scrollPosition * 0.01;
+    albumWallText.style.opacity = opacityValue >= 0 ? opacityValue : 0;
+  });
+
   return (
     <>
-      <div className="about-section">
-        <h1>Info Page</h1>
-        <h5>Find out different customizable acrylic options!</h5>
+      <div className="custom-album-wall">
+        <h2 className="album-wall-text">
+          Make your own, personalized album wall.
+        </h2>
+        <img
+          src="https://i.imgur.com/GWVnRij.jpg"
+          alt="Album Wall"
+          className="album-wall-image"
+        />
       </div>
       <div className="about-cards">
         <div className="mount-container">
