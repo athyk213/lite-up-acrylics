@@ -1,8 +1,8 @@
 .autocomplete {
-  margin-top:3.7%;
+  margin-top: 3.7%;
   padding: 0;
   list-style: none;
-  position:absolute;
+  position: absolute;
   z-index: 1;
   width: calc(100% - 93px);
 }

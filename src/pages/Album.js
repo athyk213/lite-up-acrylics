@@ -87,17 +87,19 @@ export default function Album({
   return (
     <>
       {!noAlbum && (
-        <Button
-          className="btn-dark"
-          onClick={goBack}
-          style={{ width: "100px", marginLeft: "30px" }}
-        >
-          <FontAwesomeIcon
-            icon={faArrowLeft}
-            style={{ marginRight: "0.5rem" }}
-          />
-          Back
-        </Button>
+        <div className="back-button" style={{ display: "flex" }}>
+          <Button
+            className="btn-dark"
+            onClick={goBack}
+            style={{ width: "100px" }}
+          >
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              style={{ marginRight: "0.5rem" }}
+            />
+            Back
+          </Button>
+        </div>
       )}
       <div className="album-details-container">
         <img
@@ -142,7 +144,7 @@ export default function Album({
             albumsInCart={albumsInCart}
             signedIn={signedIn}
           ></Options>
-          <p>
+          <p className="album-info">
             * For more details on the products, check out the{" "}
             <Link to="/info" style={{ color: "blue" }}>
               INFO
