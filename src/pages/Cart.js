@@ -135,7 +135,6 @@ export default function Cart({
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ width: "97%", padding: "0px" }}>
         {albumsInCart.map((album, i) => {
-          console.log(album);
           return (
             <Card key={i} className="mb-2">
               <Card.Body className="d-flex align-items-center">

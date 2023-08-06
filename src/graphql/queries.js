@@ -37,6 +37,10 @@ export const listOrders = /* GraphQL */ `
           id
           name
           images
+          artists {
+            id
+            name
+          }
           release_date
         }
         option
